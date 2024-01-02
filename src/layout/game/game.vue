@@ -1,5 +1,5 @@
 <template>
-  <iframe id="gameDiv" src="http://192.168.31.212:5173/html/index.html"></iframe>
+  <iframe id="gameDiv" src="https://test.anhatech.com/html/index.html"></iframe>
 </template>
 
 <script>
