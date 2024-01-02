@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>DressupGirl</title>
+
+  <meta name="viewport"
+    content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="full-screen" content="yes" />
+  <meta name="screen-orientation" content="portrait" />
+  <meta name="x5-fullscreen" content="true" />
+  <meta name="360-fullscreen" content="true" />
+
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta property="og:url" content="https://dressupgirl.online/" />
+
+  <!-- <link rel="stylesheet" type="text/css" href="style-desktop.css" /> -->
+  <link rel="icon" href="favicon.8de18.ico" />
+</head>
+
+<style>
+  body {
+    -webkit-overflow-scrolling: none !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  div {
+    -webkit-user-select: text !important;
+  }
+
+  .container {
+    width: 100%;
+    height: 100vh;
+    /* background-color: rgb(0, 0, 0); */
+    overflow: hidden !important;
+    /* background-image: url("https://dressupgirl.online/bgweb.jpg"); */
+    background-color: #000000 !important;
+    /* background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; */
+    position: relative;
+  }
+
+  img.zoom {
+    width: auto;
+    height: 80%;
+    margin-right: 15px;
+  }
+
+  .height-game-div {
+    height: 95% !important;
+  }
+
+  .hide-header {
+    display: none !important;
+    visibility: visible;
+    opacity: 0;
+  }
+
+  .title {
+    color: #000000;
+    /* font-size: 2.5rem; */
+    font-weight: 700;
+    margin-left: 15px;
+    -webkit-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+    -moz-user-select: text !important;
+  }
+
+  img.logo {
+    width: auto;
+    height: 100%;
+    border-radius: 10px;
+  }
+
+  .logos {
+    min-width: 30%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+
+
+
+  .header {
+    height: 5% !important;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed !important;
+    bottom: 0 !important;
+  }
+
+  @media only screen and (min-width: 920px) {
+    #GameDiv {
+      box-shadow: none !important;
+      height: 100% !important;
+      width: auto;
+      background-color: rgb(0, 0, 0);
+      overflow: hidden !important;
+      border: none !important;
+      border-radius: 0 !important;
+    }
+
+    .title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media only screen and (max-width: 919px) {
+    #GameDiv {
+      box-shadow: none !important;
+      height: 100% !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      border: none !important;
+      border-radius: 0px !important;
+      position: fixed !important;
+      top: 0 !important;
+    }
+
+    .title {
+      font-size: 1.0 rem;
+    }
+
+    /* 
+    #GameCanvas {
+      aspect-ratio: 1 / 1;
+    } */
+  }
+</style>
+
+
+<body>
+  <div class="container" id="container">
+    <div id="GameDiv">
+      <canvas id="GameCanvas" width="1920" height="1080"></canvas>
+      <div id="splash">
+        <div class="progress-bar stripes">
+          <span style="width: 0%"></span>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="header">
+      <div class="logos">
+        <img class="logo" src="https://i.imgur.com/k62V6mL.jpg" alt="DressUpGirl" srcset="" />
+        <div class="title">Dressup Girl</div>
+      </div>
+      <img class="zoom" src="https://dressupgirl.online/zoom.png" alt="zoom" srcset="" id="myButton" />
+    </div> -->
+  </div>
+  <!-- <script>
+    var userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf('iphone') !== -1) {
+      var button = document.getElementById("myButton");
+      button.style.display = "none";
+    }
+
+    var isFull = true;
+    function handleClick() {
+      var div = document.getElementById("GameDiv");
+      const canvas = document.getElementById('GameCanvas');
+      if (!document.fullscreenElement) {
+        if (div.requestFullscreen) {
+          isFull = false;
+          div.requestFullscreen();
+
+        } else if (div.mozRequestFullScreen) {
+          isFull = false; /* Firefox */
+          div.mozRequestFullScreen();
+        } else if (div.webkitRequestFullscreen) {
+          isFull = false; /* Chrome, Safari & Opera */
+          div.webkitRequestFullscreen();
+        } else if (div.msRequestFullscreen) {
+          isFull = false; /* IE/Edge */
+          div.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          // document.getElementById("GameDiv").style.position = "relative";
+          document.exitFullscreen();
+
+        } else if (document.mozCancelFullScreen) {
+          /* Firefox */
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          /* Chrome, Safari & Opera */
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          /* IE/Edge */
+          document.msExitFullscreen();
+        }
+      }
+    }
+
+    window.addEventListener("resize", () => {
+      if (document.fullscreenElement) {
+      } else {
+        if (window.innerWidth < 919) {
+          if (isFull == false) {
+            isFull = true;
+            window.location.reload();
+          }
+        }
+      }
+    });
+
+
+
+    // // Thêm event listener cho nút
+    var button = document.getElementById("myButton");
+    button.addEventListener("click", handleClick); -->
+  <!-- </script> -->
+
+  <script src="src/settings.a6951.js" charset="utf-8"></script>
+  <script src="main.8e66e.js" charset="utf-8"></script>
+
+  <script type="text/javascript">
+    (function () {
+      // open web debugger console
+      if (typeof VConsole !== 'undefined') {
+        window.vConsole = new VConsole();
+      }
+
+      var debug = window._CCSettings.debug;
+      var splash = document.getElementById('splash');
+      splash.style.display = 'block';
+
+      function loadScript(moduleName, cb) {
+        function scriptLoaded() {
+          document.body.removeChild(domScript);
+          domScript.removeEventListener('load', scriptLoaded, false);
+          cb && cb();
+        };
+        var domScript = document.createElement('script');
+        domScript.async = true;
+        domScript.src = moduleName;
+        domScript.addEventListener('load', scriptLoaded, false);
+        document.body.appendChild(domScript);
+      }
+
+      loadScript(debug ? 'cocos2d-js.js' : 'cocos2d-js-min.75216.js', function () {
+        if (CC_PHYSICS_BUILTIN || CC_PHYSICS_CANNON) {
+          loadScript(debug ? 'physics.js' : 'physics-min.js', window.boot);
+        }
+        else {
+          window.boot();
+        }
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
